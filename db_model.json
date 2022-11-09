@@ -28,7 +28,8 @@
             "required":"true"
         },
         "estado":{
-            "type":"Schema.ObjectId"
+            "type":"String",
+            "enum": ["habilitado",""]
         }
     },
     "Gasto_comun":{

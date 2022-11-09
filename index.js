@@ -5,6 +5,15 @@ const dotenv = require('dotenv');
 const app = express();
 dotenv.config();
 
+const casaRoutes = require('./routes/casaRoutes')
+
+app.use(cors());
+app.use(express.json());
+app.options('*',cors());
+
+app.use('/api',casaRoutes);
+
+
 const options = {
     useNewUrlParser: true,
     autoIndex: true,
