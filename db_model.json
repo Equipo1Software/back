@@ -1,0 +1,64 @@
+{
+    "usuario":{
+        "nombre":{
+            "type":"String",
+            "required":"true"
+        },
+        "email":{
+            "type":"String",
+            "required":"true"
+        },
+        "role":{
+            "type":"String",
+            "enum":["users","admin"]
+        },
+        "casa":{
+            "type":"Schema.ObjectId",
+            "ref": "Casa"
+        },
+        "Gasto_comun":{
+            "type":["Schema.ObjectId"],
+            "ref":"Gasto_comun"
+        }
+
+    },
+    "Casa":{
+        "numero":{
+            "type":"String",
+            "required":"true"
+        },
+        "estado":{
+            "type":"Schema.ObjectId"
+        }
+    },
+    "Gasto_comun":{
+        "agua":{
+            "type":"number",
+            "required":"true"
+        },
+        "luz":{
+            "type":"number",
+            "required":"true"
+        },
+        "gas":{
+            "type":"number",
+            "required":"true"
+        },
+        "mantenimiento":{
+            "type":"number",
+            "required":"true"
+        },
+        "sueldos":{
+            "type":"number",
+            "required":"true"
+        },
+        "fecha":{
+            "type":"String",
+            "required":"true"
+        }
+    }
+    
+
+    
+}
+
