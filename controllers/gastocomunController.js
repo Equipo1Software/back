@@ -67,8 +67,8 @@ const getGastosByIdVecino = (req,res)=>{
 
 
 const updateGasto = (req,res)=>{
-    const {id} = req.params
-    const{id_user} = req.params
+    const {id,id_user} = req.params
+    //const{id_user} = req.params
     //verificar admin
     User.findById({_id:id_user},(error,user)=>{ 
         if(error){
@@ -97,6 +97,7 @@ const updateGasto = (req,res)=>{
 
 const deleteGasto = (req,res)=>{
     const {id} = req.params
+    
     GastoComun.findByIdAndDelete(id,(error,gasto)=>{
     
         if(error){
