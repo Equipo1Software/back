@@ -15,10 +15,6 @@
         "casa":{
             "type":"Schema.ObjectId",
             "ref": "Casa"
-        },
-        "Gasto_comun":{
-            "type":["Schema.ObjectId"],
-            "ref":"Gasto_comun"
         }
 
     },
@@ -60,6 +56,10 @@
         "estado":{
             "type":"String",
             "enum":["vencido","por pagar","pagado"]
+        },
+        "user":{
+            "type":"Schema.ObjectId",
+            "ref": "user"
         }
     }
     

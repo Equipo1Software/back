@@ -7,6 +7,7 @@ dotenv.config();
 
 const casaRoutes = require('./routes/casaRoutes')
 const gastosRoutes = require('./routes/gastocomunRoutes')
+const userRoutes = require('./routes/userRoutes')
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,11 @@ app.options('*',cors());
 
 app.use('/api',casaRoutes);
 app.use('/api',gastosRoutes);
+app.use('/api' , userRoutes);
+
+app.use('/',(req,res)=>{
+    res.send('Home page')
+})
 
 const options = {
     useNewUrlParser: true,
@@ -29,7 +35,7 @@ mongoose.connect(process.env.DB, options, (error) => {
     if (error) {
         console.log(error);
     } else {
-        console.log("Connected to database");
+        console.log("Connected to database 👍🚀✔");
     }
 })
 
