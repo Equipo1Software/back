@@ -57,7 +57,7 @@
             "type":"String",
             "enum":["vencido","por pagar","pagado"]
         },
-        "user":{
+        "vecino":{
             "type":"Schema.ObjectId",
             "ref": "user"
         }

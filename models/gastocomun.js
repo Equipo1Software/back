@@ -29,6 +29,10 @@ const gastoComun= new Schema({
     estado:{
         type:String,
         enum:["vencido","por pagar","pagado"]
+    },
+    vecino:{
+        type:Schema.ObjectId,
+        ref:'user'
     }
 })
 
