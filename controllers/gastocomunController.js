@@ -46,7 +46,11 @@ const getGastosByIdVecino = (req,res)=>{
         if(!user){
             return res.status(404).send({message:"No se encontró al usuario"})
         }
+        if(user.rol!='vecino'){
+            return res.status(401).send({message: "no se permiten admin"})
+        }
         if(user.rol==='vecino'){
+            //visualizar gasto del vecino
             GastoComun.find({vecino:id},(error,gasto)=>{
                 if(error){
                     return res.status(400).send({message:"Error al buscar los gastos del vecino"})
@@ -55,30 +59,29 @@ const getGastosByIdVecino = (req,res)=>{
                     return res.status(404).send({message:"El vecino no tiene gastos"})
                 }
                 return res.status(201).send(gasto)
-            }) 
-        }
-        else{
-            return res.status(401).send({message: "no se permiten admin"})
-        }      
+            })   
+        }    
     })
-    
-    // visualizar los gasto del vecino   
+
 }
 
 
 const updateGasto = (req,res)=>{
     const {id} = req.params
     const{id_user} = req.params
-    console.log(id)
+    //verificar admin
     User.findById({_id:id_user},(error,user)=>{ 
-        console.log(user.rol)
         if(error){
             return res.status(400).send({message: "Error al buscar usuario"})
         }
         if(!user){
             return res.status(404).send({message:"No se encontró al usuario"})
         }
-        if(user.rol==='admin'){
+        if(user.rol!='admin'){
+            return res.status(401).send({message: "no se permiten vecinos"})
+        }
+        else{
+            //luego de verificar el admin se procede al update
             GastoComun.findByIdAndUpdate(id,req.body,(error,gasto)=>{
                 if(error){
                     return res.status(400).send({message: "Error al buscar gasto"})
@@ -88,9 +91,6 @@ const updateGasto = (req,res)=>{
                 }
                 return res.status(201).send({message:"gasto actualizado"})
             })
-        }
-        else{
-            return res.status(401).send({message: "no se permiten vecinos"})
         }     
     })
 }
