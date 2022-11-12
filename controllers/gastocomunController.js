@@ -109,16 +109,28 @@ const updateGasto = (req,res)=>{
 }
 
 const deleteGasto = (req,res)=>{
-    const {id} = req.params
-    
-    GastoComun.findByIdAndDelete(id,(error,gasto)=>{
+    const {id, id_user} = req.params
+    User.findById({_id:id_user},(error,user)=>{
         if(error){
-            return res.status(400).send({message: "Error al buscar gasto"})
+            return res.status(400).send({message: "Error al buscar usuario"})
         }
-        if(!gasto){
-            return res.status(404).send({message:"No se encontró el gasto"})
+        if(!user){
+            return res.status(404).send({message:"No se encontró al usuario"})
         }
-        return res.status(201).send({message:"gasto eliminado"})
+        if(user.rol!='admin'){
+            return res.status(401).send({message: "sólamente el admin tiene permiso para esta accion"})
+        }
+        else{
+            GastoComun.findByIdAndDelete(id,(error,gasto)=>{
+                if(error){
+                    return res.status(400).send({message: "Error al buscar gasto"})
+                }
+                if(!gasto){
+                    return res.status(404).send({message:"No se encontró el gasto"})
+                }
+                return res.status(201).send({message:"gasto eliminado"})
+            })
+        }
     })
 }
 
