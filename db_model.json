@@ -10,7 +10,7 @@
         },
         "role":{
             "type":"String",
-            "enum":["users","admin"]
+            "enum":["vecino","admin"]
         },
         "casa":{
             "type":"Schema.ObjectId",
@@ -56,6 +56,10 @@
         "fecha":{
             "type":"String",
             "required":"true"
+        },
+        "estado":{
+            "type":"String",
+            "enum":["vencido","por pagar","pagado"]
         }
     }
     

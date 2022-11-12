@@ -6,13 +6,14 @@ const app = express();
 dotenv.config();
 
 const casaRoutes = require('./routes/casaRoutes')
+const gastosRoutes = require('./routes/gastocomunRoutes')
 
 app.use(cors());
 app.use(express.json());
 app.options('*',cors());
 
 app.use('/api',casaRoutes);
-
+app.use('/api',gastosRoutes);
 
 const options = {
     useNewUrlParser: true,

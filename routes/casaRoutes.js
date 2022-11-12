@@ -1,7 +1,9 @@
 const express = require('express')
 const casaController = require('../controllers/casaController')
 const api = express.Router();
-console.log("modelo3")
+
 api.post("/casa", casaController.createCasa)
+api.get('/casas',casaController.getCasas)
+api.put('/casa/update/:id', casaController.updateCasa)
 
 module.exports=api;
