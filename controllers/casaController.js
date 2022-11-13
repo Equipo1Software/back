@@ -34,12 +34,24 @@ const updateCasa = (req,res) =>{
             return res.status(400).send({message: "Error al actualizar casa"})
         }
         if(!casa){
-            return res.status(404).send({message:"No se encontró al casa"})
+            return res.status(404).send({message:"No se encontró la casa"})
         }
         return res.status(201).send({message:"casa actualizada"})
     })
 }
 
+const deleteCasa = (req,res) =>{
+    const {id} = req.params
+    User.findByIdAndDelete(id,(error,casa)=>{  
+        if(error){
+            return res.status(400).send({message: "Error al eliminar casa"})
+        }
+        if(!user){
+            return res.status(404).send({message:"No se encontró la casa"})
+        }
+        return res.status(201).send({message:"casa eliminada"})
+    })
+}
 
 module.exports={
     createCasa,
