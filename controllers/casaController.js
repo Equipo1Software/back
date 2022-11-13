@@ -56,5 +56,6 @@ const deleteCasa = (req,res) =>{
 module.exports={
     createCasa,
     getCasas,
-    updateCasa
+    updateCasa,
+    deleteCasa
 }
