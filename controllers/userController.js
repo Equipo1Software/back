@@ -15,7 +15,6 @@ const createUser = (req,res)=>{
         return res.status(201).send(user)
     })
 }
-
 const getUser = (req,res) =>{
     User.find((error,user)=>{
         if(error){
@@ -43,8 +42,7 @@ const updateUser = (req,res) =>{
 
 const deleteUser = (req,res) =>{
     const {id} = req.params
-    User.findByIdAndDelete(id,(error,user)=>{
-    
+    User.findByIdAndDelete(id,(error,user)=>{  
         if(error){
             return res.status(400).send({message: "Error al buscar usuario"})
         }
