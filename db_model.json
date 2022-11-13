@@ -16,7 +16,6 @@
             "type":"Schema.ObjectId",
             "ref": "Casa"
         }
-
     },
     "Casa":{
         "numero":{

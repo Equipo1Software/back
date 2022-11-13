@@ -59,9 +59,6 @@ const getGastosByIdVecino = (req,res)=>{
         if(!user){
             return res.status(404).send({message:"No se encontró al usuario"})
         }
-        if(user.rol==='admin'){
-            return res.status(401).send({message: "no se permiten admin"})
-        }
         if(user.rol==='vecino'){
             //visualizar gasto del vecino
             GastoComun.find({vecino:id},(error,gasto)=>{
@@ -77,11 +74,8 @@ const getGastosByIdVecino = (req,res)=>{
     })
 
 }
-
-
 const updateGasto = (req,res)=>{
     const {id,id_user} = req.params
-    //const{id_user} = req.params
     //verificar admin
     User.findById({_id:id_user},(error,user)=>{ 
         if(error){
