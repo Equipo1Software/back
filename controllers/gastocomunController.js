@@ -49,31 +49,31 @@ const getGastos = (req,res)=>{
     })   
 }
 
-const getGastosByIdVecino = (req,res)=>{
-    const {id} = req.params
-    // verificar vecino
+const getGastosByIdVecino = (req,res )=>{ 
+    const {id} = req.params 
+    // verificar vecino 
     User.findById({_id:id},(error,user)=>{     
-        if(error){
-            return res.status(400).send({message: "Error al buscar usuario"})
-        }
-        if(!user){
-            return res.status(404).send({message:"No se encontró al usuario"})
-        }
-        if(user.rol==='vecino'){
-            //visualizar gasto del vecino
-            GastoComun.find({vecino:id},(error,gasto)=>{
-                if(error){
-                    return res.status(400).send({message:"Error al buscar los gastos del vecino"})
-                }
-                if(gasto.length===0){
-                    return res.status(404).send({message:"El vecino no tiene gastos"})
-                }
-                return res.status(201).send(gasto)
-            })   
-        }    
-    })
-
+        if(error){ 
+            return res.status(400).send({message: "Error al buscar usuario "}) 
+        } 
+        if(!user){ 
+            return res.status(404).send({message:"No se encontró al usuario "}) 
+        } 
+        if(user.rol==='vecino '){ 
+            //visualizar gasto del vecino 
+            GastoComun.find({vecino:id},(error,gasto)=>{ 
+                if(error){ 
+                    return res.status(400).send({message:"Error al buscar los gastos del vecino "})
+                } 
+                if(gasto.length===0){ 
+                    return res.status(404).send({message:"El vecino no registra gastos "})
+                } 
+                return res.status(201).send(gasto) 
+            } )   
+        }     
+    } )
 }
+
 const updateGasto = (req,res)=>{
     const {id,id_user} = req.params
     //verificar admin
