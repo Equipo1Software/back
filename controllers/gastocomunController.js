@@ -1,7 +1,7 @@
-const gastocomun = require('../models/gastocomun')
+const mailerController = require('../controllers/emailController')
+const GastoComun = require('../models/gastocomun')
 
-GastoComun = require('../models/gastocomun')
-User = require ('../models/user')
+const User = require ('../models/user')
 
 const createGasto = (req,res)=>{
     const {id}=req.params
@@ -16,7 +16,7 @@ const createGasto = (req,res)=>{
         estado,
         vecino
     })
-    User.findById({_id:id},(error,user)=>{
+    User.findById({_id:vecino},(error,user)=>{
         if(error){
             return res.status(400).send({message: "Error al buscar usuario"})
         }
@@ -45,6 +45,7 @@ const getGastos = (req,res)=>{
         if(gasto.length===0){
             return res.status(404).send({message:"No se encontraron gastos"})
         }
+        
         return res.status(201).send(gasto)
     })   
 }
