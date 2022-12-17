@@ -1,4 +1,6 @@
+const user = require('../models/user.js')
 const User = require('../models/user.js')
+const { createToken } = require('../services/token')
 
 const createUser = (req,res)=>{
     const {nombre,email,rol,casa} = req.body
@@ -15,6 +17,7 @@ const createUser = (req,res)=>{
         return res.status(201).send(user)
     })
 }
+
 const getUser = (req,res) =>{
     User.find((error,user)=>{
         if(error){
@@ -57,5 +60,8 @@ module.exports = {
     createUser,
     getUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    login,
+    checkToken,
+    logout
 }
