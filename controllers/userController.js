@@ -34,7 +34,6 @@ const login = (req,res)=>{
 const checkToken = (req, res)=>{
     return res.status(200).send({message:'Token valido'})
 }
-
 const logout = (req, res)=>{
     res.clearCookie('token')
     return res.status(200).send({message:'Cerró la sesión correctamente'})
