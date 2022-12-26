@@ -10,5 +10,5 @@ api.delete('/user/delete/:id', userController.deleteUser)
 api.post('/login', userController.login)
 api.get('/checkToken', auth.auth,userController.checkToken)
 api.get('/logout', auth.auth, userController.logout)
-
+api.get('/user/:id', userController.getOnlyUser)
 module.exports= api;

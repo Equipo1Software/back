@@ -18,7 +18,8 @@ const createUser = (req,res)=>{
     })
 }
 const login = (req,res)=>{
-    let email = req.body.email.toLowerCase();
+    let email = req.body.email
+    console.log(email)
     User.findOne({email},(error, user)=>{
         if(error){
             return res.status(400).send({message: 'Error al iniciar Sesion'})
@@ -26,8 +27,10 @@ const login = (req,res)=>{
         if(!user){
             return res.status(404).send({message: 'No se encontro el usuario'})
         }
+
         res.cookie('token', createToken(user, {httpOnly: true}))
-        return res.status(200).send({message: 'Inicio de session correctamente', token: createToken(user), user: user.nombre})
+        console.log("Inicio correctamente")
+        return res.status(200).send({message: 'Inicio de session correctamente', token: createToken(user), user: user})
     })
 }
 
@@ -48,6 +51,20 @@ const getUser = (req,res) =>{
             return res.status(404).send({message:"No se encontro usuarios"})
         }
         return res.status(201).send(user)
+    })
+}
+
+const getOnlyUser =(req,res)=>{
+    const {id} = req.params
+    User.findById(id,(error,user)=>{    
+        if(error){
+            console.log(error)
+            return res.status(400).send({message: "Error al buscar usuario"})
+        }
+        if(!user){
+            return res.status(404).send({message:"No se encontró al usuario"})
+        }
+       return res.status(201).send(user)   
     })
 }
 
@@ -84,5 +101,6 @@ module.exports = {
     deleteUser,
     login,
     checkToken,
-    logout
+    logout,
+    getOnlyUser
 }

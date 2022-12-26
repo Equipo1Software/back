@@ -16,7 +16,7 @@ const createGasto = (req,res)=>{
         estado,
         vecino
     })
-    User.findById({_id:vecino},(error,user)=>{
+    User.findById({_id:id},(error,user)=>{
         if(error){
             return res.status(400).send({message: "Error al buscar usuario"})
         }
