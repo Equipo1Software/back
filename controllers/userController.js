@@ -43,7 +43,7 @@ const logout = (req, res)=>{
 }
 
 const getUser = (req,res) =>{
-    User.find((error,user)=>{
+    User.find({rol:"vecino"},(error,user)=>{
         if(error){
             return res.status(400).send({message: "Error al buscar usuarios"})
         }
