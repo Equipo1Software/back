@@ -1,4 +1,5 @@
 const Casa = require('../models/casa')
+
 const createCasa = (req,res)=>{
     const {numero,estado}=req.body
     const newCasa= new Casa({
