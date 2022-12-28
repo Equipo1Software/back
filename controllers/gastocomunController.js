@@ -38,7 +38,7 @@ const createGasto = (req,res)=>{
 }
 
 const getGastos = (req,res)=>{
-    GastoComun.find({},(error,gasto)=>{
+    GastoComun.find({}).populate('vecino').exec((error,gasto)=>{
         if(error){
             return res.status(400).send({message:"Error al buscar los gastos"})
         }
