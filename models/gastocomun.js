@@ -22,8 +22,12 @@ const gastoComun= new Schema({
         type:Number,
         required:true
     },
-    fecha:{
-        type:String,
+    fechaEmision:{
+        type:Date,
+        required:true
+    },
+    fechaLimite:{
+        type:Date,
         required:true
     },
     estado:{

@@ -5,14 +5,15 @@ const User = require ('../models/user')
 
 const createGasto = (req,res)=>{
     const {id}=req.params
-    const {agua,luz,gas,mantenimiento,sueldo,fecha,estado,vecino} = req.body
+    const {agua,luz,gas,mantenimiento,sueldo,fechaEmision,fechaLimite,estado,vecino} = req.body
     newGasto = new GastoComun({
         agua,
         luz,
         gas,
         mantenimiento,
         sueldo,
-        fecha,
+        fechaEmision,
+        fechaLimite,
         estado,
         vecino
     })
