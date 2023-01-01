@@ -67,6 +67,17 @@ const getOnlyUser =(req,res)=>{
        return res.status(201).send(user)   
     })
 }
+const getAdmin = (req,res) =>{
+    User.find({rol:"admin"},(error,user)=>{
+        if(error){
+            return res.status(400).send({message: "Error al buscar usuarios"})
+        }
+        if(user.length===0){
+            return res.status(404).send({message:"No se encontro usuarios"})
+        }
+        return res.status(201).send(user)
+    })
+}
 
 const updateUser = (req,res) =>{
     const {id} = req.params
@@ -102,5 +113,6 @@ module.exports = {
     login,
     checkToken,
     logout,
-    getOnlyUser
+    getOnlyUser,
+    getAdmin
 }
