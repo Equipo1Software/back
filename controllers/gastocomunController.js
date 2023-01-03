@@ -51,6 +51,7 @@ const getGastos = (req,res)=>{
     })   
 }
 
+
 const getGastosByIdVecino = (req,res)=>{
     const {id} = req.params
     // verificar vecino
